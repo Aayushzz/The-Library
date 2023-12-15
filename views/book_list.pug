@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .content-container
+    h1.welcome-title= title
+
+    ul.book-list
+      each book in book_list
+        li
+          a(href=book.url) #{book.title}
+          | (#{book.author.name})
+      else
+        li There are no books.

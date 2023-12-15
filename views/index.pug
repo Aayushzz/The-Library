@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .content-container
+    h1.welcome-title= title
+    p Welcome to #[em The Library]
+
+    h1.dynamic-content-title 
+
+    p The library has the following record counts:
+
+    ul
+      li #[strong.lead] Books: !{book_count}
+      li #[strong.lead] Copies: !{book_instance_count}
+      li #[strong.lead] Copies available: !{book_instance_available_count}
+      li #[strong.lead] Authors: !{author_count}
+      li #[strong.lead] Genres: !{genre_count}
