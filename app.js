@@ -3,10 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var usersRouter = require('./routes/users');
-var indexRouter = require('./routes/index');
+var usersRouter = require('./src/routes/users');
+var indexRouter = require('./src/routes/index');
 const mongoose = require("mongoose");
-const catalogRouter = require('./routes/catalog');
+const catalogRouter = require('./src/routes/catalog');
 const compression = require("compression");
 const { publicDecrypt } = require('crypto');
 const RateLimit = require("express-rate-limit");
@@ -40,7 +40,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter);
-
+app.get('/', (req, res) => {
+  res.send("HEllo this is the index");
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -54,7 +56,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('../src/views/error');
 });
 
 
