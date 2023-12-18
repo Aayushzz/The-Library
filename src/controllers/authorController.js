@@ -106,7 +106,7 @@ exports.author_delete_get = asyncHandler(async (req, res, next) => {
     res.redirect("/catalog/authors");
   }
 
-  res.render("author_delete", {
+  res.render("../src/views/author_delete", {
     title: "Delete Author", 
     author: author, 
     author_books: allBooksByAuthor,

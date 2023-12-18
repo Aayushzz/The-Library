@@ -13,11 +13,11 @@ const RateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 var app = express();
 
-const limiter = RateLimit({
-  windowMs: 1 * 60 * 1000,
-  max: 20
-});
-app.use(limiter)
+//const limiter = RateLimit({
+ // windowMs: 1 * 60 * 1000,
+ // max: 20
+//});
+//app.use(limiter)
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -58,8 +58,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('../src/views/error');
 });
-
-
 
 //set up mongoose connection
 
