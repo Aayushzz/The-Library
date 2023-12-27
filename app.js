@@ -37,7 +37,7 @@ app.use(cookieParser());
 app.use(compression())
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/test', indexRouter);
 app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter);
 app.get('/', (req, res) => {
