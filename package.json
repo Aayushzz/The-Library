@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node ./src/bin/www",
     "devstart": "nodemon ./src/bin/www",
-    "serverstart": "DEBUG= npm run devstart",
-    "vercel-build": "npm install"
+    "serverstart": "DEBUG=npm run devstart",
+    "vercel-build": "echo hello"
   },
   "dependencies": {
     "compression": "^1.7.4",
