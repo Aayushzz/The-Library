@@ -7,7 +7,7 @@ const Book = require("../models/book");
 exports.bookinstance_list = asyncHandler(async (req, res, next) => {
   const allBookInstances = await BookInstance.find().populate("book").exec();
 
-  res.render("../src/views/bookinstance_list", {
+  res.render("bookinstance_list", {
     title: "Book Instance List",
     bookinstance_list: allBookInstances,
   });
@@ -22,7 +22,7 @@ exports.bookinstance_detail = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  res.render("../src/views/bookinstance_detail", {
+  res.render("bookinstance_detail", {
     title: "Book: ",
     bookinstance: bookInstance,
   })
@@ -32,7 +32,7 @@ exports.bookinstance_detail = asyncHandler(async (req, res, next) => {
 exports.bookinstance_create_get = asyncHandler(async (req, res, next) => {
  const allBooks = await Book.find({}, "title").sort({title: 1}).exec()
 
- res.render("../src/views/bookinstance_form", {
+ res.render("bookinstance_form", {
   title: "Create BookInstace", 
   book_list: allBooks,
  });
@@ -67,7 +67,7 @@ exports.bookinstance_create_post = [
         //render form again with sanitzied valued and error messages.
         const allBooks = await Book.find({}, "title").sort({title: 1}).exec()
 
-        res.render("../src/views/bookinstance_form", {
+        res.render("bookinstance_form", {
           title: "Create BookInstance",
           book_list: allBooks,
           selected_book: bookInstance.book._id,
@@ -93,7 +93,7 @@ exports.bookinstance_delete_get = asyncHandler(async (req, res, next) => {
     return next(err);
   }
   
-  res.render("../src/views/bookinstance_delete", {
+  res.render("bookinstance_delete", {
     title: "Book: ",
     bookinstance: bookInstance,
   })

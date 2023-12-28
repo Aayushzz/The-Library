@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 // Display list of all Authors.
 exports.author_list = asyncHandler(async (req, res, next) => {
   const allAuthors = await Author.find().sort({ family_name: 1 }).exec();
-  res.render("../src/views/author_list", {
+  res.render("author_list", {
     title: "Author List",
     author_list: allAuthors,
   });
@@ -24,7 +24,7 @@ exports.author_detail = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  res.render("../src/views/author_detail", {
+  res.render("author_detail", {
     title: "Author Details",
     author: author,
     author_books: allBooksByAuthor,
@@ -33,7 +33,7 @@ exports.author_detail = asyncHandler(async (req, res, next) => {
 
 // Display Author create form on GET.
 exports.author_create_get = asyncHandler(async (req, res, next) => {
-  res.render("../src/views/author_form", { title: "Create Author" });
+  res.render("author_form", { title: "Create Author" });
 });
 
 // Handle Author create on POST.
@@ -78,7 +78,7 @@ exports.author_create_post = [
 
     if (!errors.isEmpty()) {
       // There are errors. Render form again with sanitized values/errors messages.
-      res.render("../src/views/author_form", {
+      res.render("author_form", {
         title: "Create Author",
         author: author,
         errors: errors.array(),
@@ -106,7 +106,7 @@ exports.author_delete_get = asyncHandler(async (req, res, next) => {
     res.redirect("/catalog/authors");
   }
 
-  res.render("../src/views/author_delete", {
+  res.render("author_delete", {
     title: "Delete Author", 
     author: author, 
     author_books: allBooksByAuthor,
@@ -123,7 +123,7 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
   
   if (allBooksByAuthor.length > 0){
     //author has books. render in the same way as for GET route
-    res.render("../src/views/author_delete", {
+    res.render("author_delete", {
       title: "Delete Author", 
       author: author, 
       author_books: allBooksByAuthor,

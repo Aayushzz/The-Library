@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator");
 // Display list of all Genre.
 exports.genre_list = asyncHandler(async (req, res, next) => {
   const allGenre = await Genre.find().sort({Name: 1}).exec();
-  res.render('../src/views/genre_list', {
+  res.render('genre_list', {
     title: "Genre List", 
     genre_list: allGenre,
   })
@@ -27,7 +27,7 @@ exports.genre_detail = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  res.render("../src/views/genre_detail", {
+  res.render("genre_detail", {
     title: "Genre Detail",
     genre: genre, 
     genre_books: booksInGenre,
@@ -36,7 +36,7 @@ exports.genre_detail = asyncHandler(async (req, res, next) => {
 
 // Display Genre create form on GET.
 exports.genre_create_get = (req, res, next) => {
-  res.render("../src/views/genre_form", {title: "Create Genre"});
+  res.render("genre_form", {title: "Create Genre"});
 };
 
 // Handle Genre create on POST.
@@ -54,7 +54,7 @@ exports.genre_create_post = [
 
     if (!errors.isEmpty()){
       //There are error. Render the form again with sanitized values/error messages.
-      res.render("../src/views/genre_form", {
+      res.render("genre_form", {
         title: "Create Genre", 
         genre: genre, 
         errors: errors.array(),
@@ -83,7 +83,7 @@ exports.genre_delete_get = asyncHandler(async (req, res, next) => {
     Book.find({ genre: req.params.id }).exec()
   ])
   if (booksInGenre.length > 0){
-      res.render("../src/views/genre_delete", {
+      res.render("genre_delete", {
       title: "Delete Genre", 
       genre: genre,
       booksInGenre: booksInGenre,
@@ -91,7 +91,7 @@ exports.genre_delete_get = asyncHandler(async (req, res, next) => {
     return
   }
 
-  res.render("../src/views/genre_delete", {
+  res.render("genre_delete", {
     title: "Delete Genre", 
     genre: genre
   })

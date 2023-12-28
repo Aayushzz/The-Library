@@ -22,7 +22,7 @@ exports.index = asyncHandler(async (req, res, next) => {
     Genre.countDocuments({}).exec(),
   ]);
 
-  res.render("../src/views/index", {
+  res.render("index", {
     title: "The Library Home",
     book_count: numBooks,
     book_instance_count: numBookInstances,
@@ -38,7 +38,7 @@ exports.book_list = asyncHandler(async (req, res, next) => {
     .sort({ title: 1 })
     .populate("author")
     .exec();
-  res.render("../src/views/book_list", { title: "Book List", book_list: allBooks });
+  res.render("book_list", { title: "Book List", book_list: allBooks });
 });
 
 // Display detail page for a specific book.
@@ -55,7 +55,7 @@ exports.book_detail = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  res.render("../src/views/book_detail", {
+  res.render("book_detail", {
     title: book.title,
     book: book,
     book_instances: bookInstances,
@@ -70,7 +70,7 @@ exports.book_create_get = asyncHandler(async (req, res, next) => {
     Genre.find().sort({ name: 1 }).exec(),
   ]);
 
-  res.render("../src/views/book_form", {
+  res.render("book_form", {
     title: "Create Book",
     authors: allAuthors,
     genres: allGenres,
@@ -127,7 +127,7 @@ exports.book_create_post = [
           genre.checked = "true";
         }
       }
-      res.render("../src/views/book_form", {
+      res.render("book_form", {
         title: "Create Book",
         author: allAuthors,
         gener: allGenres,
@@ -150,14 +150,14 @@ exports.book_delete_get = asyncHandler(async (req, res, next) => {
   ]);
   if (bookinstance.length > 0) {
     //the book has bookinstances which should be deleted before deleting the book
-    res.render("../src/views/book_delete", {
+    res.render("book_delete", {
       title: "Delete BookInstance",
       book: book,
       bookinstance: bookinstance,
     });
     return;
   }
-  res.render("../src/views/book_delete", {
+  res.render("book_delete", {
     title: "Delete Book",
     book: book,
   });
@@ -172,7 +172,7 @@ exports.book_delete_post = asyncHandler(async (req, res, next) => {
   ]);
 
   await Book.findByIdAndDelete(req.params.id);
-  res.redirect("../src/views/catalog/books");
+  res.redirect("catalog/books");
 });
 
 // Display book update form on GET.
@@ -200,7 +200,7 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
     }
   }
 
-  res.render("../src/views/book_form", {
+  res.render("book_form", {
     title: "Update Book", 
     authors: allAuthors,
     genres: allGenres, 
@@ -263,7 +263,7 @@ exports.book_update_post = [
           genre.checked = "true"; 
         }
       }
-      res.render("../src/views/book_form", {
+      res.render("book_form", {
         title: "update Book", 
         authors: allAuthors,
         genres: allGenres, 
