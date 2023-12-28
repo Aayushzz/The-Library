@@ -62,7 +62,7 @@ app.use(function(err, req, res, next) {
 //set up mongoose connection
 
 mongoose.set('strictQuery', false);
-const dev_db_url = "mongodb+srv://aayushnrla:Locallibrary@cluster0.rfkazdc.mongodb.net/?retryWrites=true&w=majority"
+const dev_db_url ="mongodb+srv://aayushnrla:Locallibrary@cluster0.rfkazdc.mongodb.net/test?retryWrites=true&w=majority";
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 main().catch((err) => console.log(err));
 async function main() {
