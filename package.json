@@ -12,6 +12,7 @@
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "base64-vlq": "latest",
     "express": "~4.16.1",
     "express-async-handler": "^1.2.0",
     "express-rate-limit": "^7.1.5",
