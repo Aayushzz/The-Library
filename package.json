@@ -6,7 +6,7 @@
     "start": "node ./src/bin/www",
     "devstart": "nodemon ./src/bin/www",
     "serverstart": "DEBUG=npm run devstart",
-    "vercel-build": "echo hello"
+    "vercel-build": "npm install"
   },
   "dependencies": {
     "compression": "^1.7.4",
